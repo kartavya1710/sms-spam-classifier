@@ -10,7 +10,7 @@ ps = PorterStemmer()
 
 def Datapreprocessing(text):
     text = text.lower()
-    text = nltk.word_tokenize(text)
+    text = nltk.tokenize.word_tokenize(text)
 
     y = []
 
