@@ -1,10 +1,13 @@
 import streamlit as st
 import pickle
 import string
-from nltk.corpus import stopwords
 import nltk
+from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-import sklearn
+
+# Download necessary NLTK data files
+nltk.download('punkt')
+nltk.download('stopwords')
 
 ps = PorterStemmer()
 
@@ -36,24 +39,22 @@ def Datapreprocessing(text):
     text = " ".join(text)
     return text
 
-tfidf = pickle.load(open('vectorizer.pkl','rb'))
-model = pickle.load(open('model.pkl','rb'))
+tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
-st.title('Email/SMS Spam Classifier   ')
+st.title('Email/SMS Spam Classifier')
 
-
-input_sms = st.text_area('Enter the EmailSMS : ')
+input_sms = st.text_area('Enter the Email/SMS:')
 
 if st.button('Predict'):
-
-    # 1. preprocess
+    # 1. Preprocess
     transformed_sms = Datapreprocessing(input_sms)
-    # 2. vectorize
+    # 2. Vectorize
     vector_input = tfidf.transform([transformed_sms])
-    # 3. predict
+    # 3. Predict
     result = model.predict(vector_input)[0]
     # 4. Display
     if result == 1:
-        st.header("Spam ! Be Careful AMIGO ;)")
+        st.header("Spam! Be Careful AMIGO ;)")
     else:
-        st.header("Not Spam ! Go ahead buddy :D ")
+        st.header("Not Spam! Go ahead buddy :D")
