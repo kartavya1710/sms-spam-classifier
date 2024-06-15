@@ -58,3 +58,11 @@ if st.button('Predict'):
         st.header("Spam! Be Careful AMIGO ;)")
     else:
         st.header("Not Spam! Go ahead buddy :D")
+
+st.header('', divider='rainbow')
+st.markdown('''
+    Developed by KARTAVYA MASTER :8ball:
+''')
+
+link='PORTFOLIO : [CLICK ME](https://mydawjbhdas.my.canva.site/aiwithkartavya)'
+st.markdown(link,unsafe_allow_html=True)
